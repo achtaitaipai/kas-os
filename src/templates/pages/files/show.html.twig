@@ -1,0 +1,20 @@
+{% extends "layouts/baseAdmin.html.twig" %}
+
+{% block content %}
+{% import "partials/files.html.twig" as files %}
+{{files.breadcrumb(file.path)}}
+{% set url =url_for("static",{file:file.path | slug}) %}
+  <article>
+    {% if file.isAudio() %}
+      <audio controls src="{{url}}" style="margin-inline:auto; display:block;"></audio>
+    {% elseif file.isImage() %}
+      <img src="{{url}}" style="margin-inline:auto; display:block;"/>
+    {% elseif file.isMd() %}
+      {{ file.content | markdown_to_html}}
+    {% elseif file.isLink() %}
+      <a href="{{ file.content() }}">{{ file.content() }}</a>
+    {% else %}
+      <p>Unable to display a preview of the file.</p>
+    {% endif %}
+  </article>
+{% endblock %}

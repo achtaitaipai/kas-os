@@ -1,0 +1,24 @@
+@import "./textEditor.css";
+.flash {
+  border-bottom: 1px solid;
+  padding: calc(0.3 * var(--pico-spacing));
+}
+
+.flash small {
+  margin: 0;
+  color: inherit;
+}
+
+.flash.success {
+  border-color: var(--pico-form-element-valid-border-color);
+  color: var(--pico-ins-color);
+}
+
+.flash.error {
+  border-color: var(--pico-form-element-invalid-border-color);
+  color: var(--pico-del-color);
+}
+
+.drop-files__fake {
+  height: 100% !important;
+}

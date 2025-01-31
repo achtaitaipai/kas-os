@@ -1,0 +1,16 @@
+{% extends "layouts/baseAdmin.html.twig" %}
+
+{% block content %}
+
+{% import "partials/forms.html.twig" as forms %}
+  <article>
+    <h1>Login</h1>
+    <form method="post" action="{{url_for("doLogin")}}">
+      {{forms.input("Email:","email",  data["email"] ?? "", "email", errors)}}
+
+      {{forms.input("Password:","password", "", "password", errors)}}
+
+      <button>Login</button>
+    </form>
+  </article>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "layouts/baseAdmin.html.twig" %}
+
+{% block content %}
+{% import "partials/files.html.twig" as files %}
+{% import "partials/forms.html.twig" as forms %}
+{{files.breadcrumb(directory.path(), true)}}
+  <article>
+    <h1>Upload files</h1>
+    <form method="post" action="{{ url_for("filesUpload") }}" enctype="multipart/form-data">
+      <input type="hidden" name="path" value="{{directory.path}}" />
+      <input
+        type="file"
+        multiple
+        name="files[]"
+        label="Drop files here or click to upload."
+        help="Upload files here and they won't be sent immediatly."
+        is="drop-files" />
+        {%if errors["files[]"] is defined %}
+          <small style="display:block; color:var(--pico-del-color);">{{errors["files[]"]}}</small>
+        {%endif%}
+        <button style="margin-top: var(--pico-spacing)">Send</button>
+    </form>
+  </article>
+{% endblock %}

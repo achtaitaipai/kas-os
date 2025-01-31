@@ -1,0 +1,34 @@
+{% extends "layouts/baseAdmin.html.twig" %}
+
+{% block content %}
+{% import "partials/files.html.twig" as files %}
+{% import "partials/forms.html.twig" as forms %}
+{{files.breadcrumb(file.path(), false)}}
+  <article>
+    <form method="post" action="{{ url_for("filesRename") }}">
+      <input type="hidden" value="{{ file.path() }}" name="path"/>
+      {{forms.input("Name:", "name",  data["name"]?? file.name(), "text", errors)}}
+      <button>Rename</button>
+    </form>
+  </article>
+  {% if file.isLink() %}
+    <article>
+      <form method="post" action="{{ url_for("filesEdit") }}">
+        <input type="hidden" value="{{ file.path() }}" name="path"/>
+        {{forms.input("Url:", "url",  data["url"] ?? file.content() ?? "", "url", errors)}}
+        <button>Edit</button>
+      </form>
+    </article>
+  {% elseif file.isMd() %}
+    <article>
+      <form method="post" action="{{ url_for("filesEdit") }}">
+        <input type="hidden" value="{{ file.path() }}" name="path"/>
+        <label for="content">Content: </label>
+        <text-editor>
+          <textarea  name="content" id="content">{{ data["content"] ?? file.content() ?? ""}}</textarea>
+        </text-editor>
+        <button>Edit</button>
+      </form>
+    </article>
+  {% endif %}
+{% endblock %}

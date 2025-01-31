@@ -1,0 +1,18 @@
+{% macro input(label,name, value, type = "text", errors = [], required= true) %}
+    {% if label %}
+      <label for="{{name | slug}}">{{label}}</label>
+    {% endif %}
+    <input 
+    type="{{ type }}"
+    name="{{ name }}"
+    value="{{ value|e }}"
+    id="{{name | slug }}"
+    {%if errors is not empty %}
+      aria-invalid="{{errors[name] is defined ? "true" : "false"}}"
+    {%endif %}
+    {{required ? "required"}}
+    />
+    {%if errors[name] is defined %}
+      <small>{{errors[name]}}</small>
+    {%endif%}
+{% endmacro %}

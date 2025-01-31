@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    {{vite('main.ts') | raw}}
+  </head>
+  <body>
+  {% set messages = flashMessages() %}
+  {% for key in messages|keys %}
+    {% for message in messages[key] %}
+      <div class="flash {{key}}"><small>{{message}}</small></div>
+    {% endfor %}
+  {% endfor %}
+  <header class="container">
+    <nav>
+      <ul>
+        <li><strong>Kas-Os</strong></li>
+      </ul>
+      {% if isLogged() %}
+        <ul>
+          <li>
+            <details class="dropdown">
+            <summary>Create</summary>
+              <ul dir="rtl">
+                <li><a href="{{url_for("filesCreate",{}, {"path":directory.path() ?? file.directory() ?? "/", "type":"directory"})}}">New directory</a></li>
+                <li><a href="{{url_for("filesCreate",{}, {"path":directory.path() ?? file.directory() ?? "/", "type":"link"})}}">New link</a></li>
+                <li><a href="{{url_for("filesCreate",{}, {"path":directory.path() ?? file.directory() ?? "/", "type":"markdown"})}}">New markdown</a></li>
+                <li><a href="{{url_for("filesUpload",{}, {"path":directory.path() ?? file.directory()})}}">Upload files</a></li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <form method="post" action="{{url_for("logout")}}" >
+              <button class="contrast">Logout</button>
+            </form>
+          </li>
+        </ul>
+      {% endif %}
+    </nav>
+  </header>
+    <main class="container">
+      {{  block("content") }}
+    </main>
+  </body>
+</html>

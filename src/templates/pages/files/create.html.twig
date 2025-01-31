@@ -1,0 +1,24 @@
+{% extends "layouts/baseAdmin.html.twig" %}
+
+{% block content %}
+{% import "partials/files.html.twig" as files %}
+{% import "partials/forms.html.twig" as forms %}
+{{files.breadcrumb(directory.path(), true)}}
+  <article>
+    <h1>New {{type | capitalize}}</h1>
+    <form method="post" action="{{ url_for("filesCreate") }}">
+      <input type="hidden" value="{{ directory.path() }}" name="path"/>
+      <input type="hidden" value="{{ type }}" name="type"/>
+      {{forms.input("Name :", "name",  data["name"] ?? "", "text", errors)}}
+      {% if type == "link" %}
+        {{forms.input("Url:", "content",  data["content"] ?? "", "content", errors)}}
+      {% elseif type == "markdown" %}
+        <label for="content">Content: </label>
+        <text-editor>
+          <textarea  name="content" id="content">{{ data["content"] ?? ""}}</textarea>
+        </text-editor>
+      {% endif %}
+      <button>Create</button>
+    </form>
+  </article>
+{% endblock %}
