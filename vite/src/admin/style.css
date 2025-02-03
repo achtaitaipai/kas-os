@@ -1,0 +1,53 @@
+@import "prosemirror-menu/style/menu.css";
+@import "prosemirror-view/style/prosemirror.css";
+
+.flash {
+  padding-block: calc(var(--pico-spacing) * 0.325);
+  padding-inline: calc(var(--pico-spacing) * 0.5);
+  border-bottom: 1px solid;
+  background-color: color-mix(in oklch, currentColor 10%, transparent);
+}
+
+.flash p {
+  color: inherit;
+}
+
+.flash.error {
+  color: var(--pico-del-color);
+  border-color: var(--pico-form-element-invalid-border-color);
+}
+
+.flash.success {
+  color: var(--pico-ins-color);
+  border-color: var(--pico-form-element-valid-border-color);
+}
+
+text-editor {
+  display: block;
+  background-color: white;
+}
+
+text-editor .wrapper {
+  margin-block-end: var(--pico-spacing);
+  border: 1px solid var(--pico-form-element-border-color);
+}
+
+.ProseMirror {
+  padding-inline: calc(var(--pico-spacing) * 1);
+  padding-block: calc(var(--pico-spacing) * 1);
+}
+
+.ProseMirror-menubar {
+  padding-block-end: 0.3rem;
+}
+
+.ProseMirror-prompt {
+  position: fixed;
+  max-width: 16rem;
+  z-index: 10;
+  background: var(--pico-background-color);
+  padding-inline: calc(var(--pico-spacing) * 1);
+  padding-block: calc(var(--pico-spacing) * 1);
+  border: 1px solid var(--pico-form-element-border-color);
+  border-radius: var(--pico-border-radius);
+}

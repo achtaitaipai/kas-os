@@ -211,4 +211,22 @@ class FileController extends Controller
     $this->flash->addMessage("success", "The directory '" . $data["name"] . $extension . "' has been successfully created");
     return $this->redirect($request, $response, "files", [], ["path" => $directory->path()]);
   }
+
+  public function api(ServerRequestInterface $request, ResponseInterface $response)
+  {
+    $data = $request->getQueryParams();
+    $path = $data["path"] ?? "/";
+    if (!File::isValidPath($path)) {
+      throw new HttpNotFoundException($request);
+    }
+    $file = new File($path);
+    if ($file->hidden())
+      throw new HttpNotFoundException($request);
+    $payload = $file->asArray();
+    $json = json_encode($payload, JSON_PRETTY_PRINT);
+    $response->getBody()->write($json);
+    return $response
+      ->withHeader('Content-Type', 'application/json')
+      ->withStatus(200);
+  }
 }

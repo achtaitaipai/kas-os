@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use Error;
+use League\CommonMark\CommonMarkConverter;
 use RuntimeException;
 use Slim\Psr7\UploadedFile;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Path;
+use Twig\Extra\String\StringExtension;
 
 class File
 {
@@ -53,7 +55,9 @@ class File
 
   public function directory()
   {
-    return Path::getDirectory($this->path());
+    $directory =  Path::getDirectory($this->path());
+    if ($directory === $this->path()) return null;
+    return $directory;
   }
 
   public function content()
@@ -63,13 +67,14 @@ class File
     return $filesystem->readFile($this->absolutePath());
   }
 
-  public function childrens()
+  public function childrens(?bool $withHidden = true)
   {
     if (!$this->isDir()) return null;
     $rawPathes = scandir($this->absolutePath());
     $files = [];
     foreach ($rawPathes as $path) {
       if (str_starts_with($path, ".")) continue;
+      if (!$withHidden && str_starts_with($path, '_')) continue;
       $file = new File($this->path() . DIRECTORY_SEPARATOR . $path);
       $files[] = $file;
     }
@@ -81,6 +86,12 @@ class File
       return 1;
     });
     return $files;
+  }
+
+  public function slug()
+  {
+    $slugger = new StringExtension();
+    return   $slugger->createSlug($this->path())->toString();
   }
 
   public function isDir()
@@ -148,6 +159,40 @@ class File
       return 'link';
     }
     return 'unknown';
+  }
+
+  public function asArray(?bool $withDeep = true): array
+  {
+    $data =  [
+      "type" => $this->type(),
+      "parent" => $this->directory(),
+      "path" => $this->path(),
+      "name" => $this->name(),
+    ];
+
+    switch ($data["type"]) {
+      case 'link':
+        $data["url"] = $this->content();
+        break;
+
+      case 'directory':
+        if ($withDeep)
+          $data["childrens"] = array_map(fn($f) => $f->asArray(false), $this->childrens(withHidden: false));
+        break;
+
+      case 'markdown':
+        if ($withDeep) {
+          $converter = new CommonMarkConverter(["html_input" => false]);
+          $data["content"] = $converter($this->content())->getContent();
+        }
+        break;
+
+      default:
+        $data["src"] = $this->slug();
+        break;
+    }
+
+    return $data;
   }
 
   public static function isValidPath(string $path)

@@ -3,7 +3,7 @@
 {% block content %}
 {% import "partials/files.html.twig" as files %}
 {{files.breadcrumb(file.path)}}
-{% set url =url_for("static",{file:file.path | slug}) %}
+{% set url =url_for("static",{file:file.slug()}) %}
   <article>
     {% if file.isAudio() %}
       <audio controls src="{{url}}" style="margin-inline:auto; display:block;"></audio>

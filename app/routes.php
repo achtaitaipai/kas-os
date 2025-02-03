@@ -16,6 +16,8 @@ return function (App $app) {
   $app->post('/login', [AuthController::class, 'doLogin'])->setName("doLogin");
   $app->post('/logout', [AuthController::class, 'logout'])->setName("logout");
 
+  $app->get('/api', [FileController::class, 'api']);
+
   $app->group("/admin", function (RouteCollectorProxy $group) {
     $group->get("", [FileController::class, "index"])->setName("files");
     $group->get("/show", [FileController::class, "show"])->setName("filesShow");

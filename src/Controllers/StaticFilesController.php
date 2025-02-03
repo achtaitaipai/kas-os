@@ -8,6 +8,7 @@ use Slim\Exception\HttpNotFoundException;
 use Slim\Psr7\Factory\StreamFactory;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\String\Slugger\AsciiSlugger;
+use Twig\Extra\String\StringExtension;
 
 class StaticFilesController extends Controller
 {
@@ -17,10 +18,10 @@ class StaticFilesController extends Controller
     $finder = new Finder();
     $finder->files()->in($this->settings->get("content_path"));
     $target = null;
-    $slugger = new AsciiSlugger();
+    $slugger = new StringExtension();
     $fileSlug = $args['file'];
     foreach ($finder as $file) {
-      $slug = $slugger->slug($file->getRelativePath() . DIRECTORY_SEPARATOR . $file->getFilename())->toString();
+      $slug = $slugger->createSlug($file->getRelativePath() . DIRECTORY_SEPARATOR . $file->getFilename())->toString();
       if ($fileSlug === $slug) $target = $file->getRealPath();
     }
     if (is_null($target)) throw new HttpNotFoundException($request);
