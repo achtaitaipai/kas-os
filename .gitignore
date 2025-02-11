@@ -1,6 +1,6 @@
 public/assets
 public/dist
-acounts.txt
+accounts.txt
 
 # Logs
 logs
@@ -29,3 +29,6 @@ dist-ssr
 
 
 /vendor/
+
+build
+build.zip

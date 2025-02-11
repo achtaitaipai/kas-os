@@ -6,7 +6,7 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class User
 {
-  private static $path = __DIR__ . '/../../acounts.txt';
+  private static $path = __DIR__ . '/../../accounts.txt';
 
   public function __construct(public string $email, private string $hash) {}
 
