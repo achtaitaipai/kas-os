@@ -21,6 +21,7 @@
     "@picocss/pico": "^2.0.6",
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "@tailwindcss/vite": "^4.0.1",
+    "@tanstack/svelte-query": "^5.66.0",
     "@tsconfig/svelte": "^5.0.4",
     "prosemirror-example-setup": "^1.2.3",
     "prosemirror-markdown": "^1.13.1",

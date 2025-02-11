@@ -4,14 +4,12 @@
 	let {
 		left = $bindable(),
 		top = $bindable(),
-		active,
 		isMoving = $bindable(false),
     enabled,
 		children
 	}: {
 		left: number
 		top: number
-		active: boolean
 		isMoving: boolean
     enabled: boolean
 		children: Snippet
@@ -28,7 +26,7 @@
 		isMoving = false
 	}
 	function handleMouseMove(e: MouseEvent) {
-		if (!enabled || !isMoving || !active) return
+		if (!enabled || !isMoving) return
 		if (oldPosition) {
 			const [oldX, oldY] = oldPosition
 			let [diffX, diffY] = [e.clientX - oldX, e.clientY - oldY]
@@ -42,7 +40,7 @@
 <svelte:window onpointermove={handleMouseMove} onpointerup={handleUnclick} />
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div class="bg-blue-800" class:active onpointerdown={handleClick}>
+<div class="" onpointerdown={handleClick}>
 	{@render children()}
 </div>
 

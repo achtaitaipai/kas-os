@@ -1,7 +1,23 @@
 <script lang="ts">
-  import Window from "./ui/Window/index.svelte";
+  import { QueryClient, QueryClientProvider } from "@tanstack/svelte-query";
+  import Desktop from "./ui/Desktop.svelte";
+
+  const queryClient = new QueryClient();
 </script>
 
-<main class="bg-linear-to-br/oklch from-amber-300 to-pink-500 h-dvh">
-  <Window path="/Posts/Zut.md" />
-</main>
+<QueryClientProvider client={queryClient}>
+  <Desktop />
+</QueryClientProvider>
+
+<svg xmlns="http://www.w3.org/2000/svg" class="hidden">
+  <filter id="blue-filter" color-interpolation-filters="sRGB">
+    <feColorMatrix
+      type="matrix"
+      values=" 0.000  0.000  0.000  0.000  0.000 
+               0.000  0.000  0.000  0.000  0.000 
+               0.500  0.500  0.500  0.000  0.000 
+               0.000  0.000  0.000  1.000  0.000"
+    >
+    </feColorMatrix>
+  </filter>
+</svg>

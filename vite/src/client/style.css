@@ -1,6 +1,36 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@font-face {
+  font-family: "Other Hand Alt";
+  src:
+    url("/fonts/OtherHandAlt.woff2") format("woff2"),
+    url("/fonts/OtherHandAlt.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Other Hand";
+  src:
+    url("/fonts/OtherHandRegular.woff2") format("woff2"),
+    url("/fonts/OtherHandRegular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Other Hand Medium";
+  src:
+    url("/fonts/OtherHandMedium.woff2") format("woff2"),
+    url("/fonts/OtherHandMedium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
-  --color-midnight: oklch(70% 0.2195 153.53);
+  --color-background: oklch(0.901 0.058 230.902);
 }

@@ -99,7 +99,7 @@
 	onmousedown={handleClick}
 	onmousemove={setCursor}
 	bind:this={element}
-	style="cursor:{edge ? CURSORS[edge] : 'auto'}"
+	style="cursor:{(edge&&enabled) ? CURSORS[edge] : 'auto'}"
   class="absolute inset-0 p-[6px]" 
 >
 	{@render children()}

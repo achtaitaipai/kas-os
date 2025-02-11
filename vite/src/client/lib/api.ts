@@ -1,3 +1,5 @@
+import { createQuery } from "@tanstack/svelte-query";
+
 type BaseFile = {
   path: string;
   parent: string | null;
@@ -49,10 +51,17 @@ export type FileData =
   | MarkdownFile
   | Directory;
 
-export async function fetchApi(path: string): Promise<FileData> {
-  const url = new URL("http://localhost:8000/api");
+async function fetchApi(path: string): Promise<FileData> {
+  const url = new URL(`${location.origin}/api`);
   url.searchParams.append("path", path);
   const response = await fetch(url);
   if (!response.ok) throw new Error(`${response.statusText}`);
   return (await response.json()) as FileData;
+}
+
+export function queryApi(path: string) {
+  return createQuery({
+    queryKey: [path],
+    queryFn: () => fetchApi(path),
+  });
 }

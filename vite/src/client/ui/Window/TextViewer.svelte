@@ -1,9 +1,11 @@
 <script lang="ts">
-  import type { MarkdownFile } from "../../api";
+  import type { MarkdownFile } from "../../lib/api";
 
   let { file }: { file: MarkdownFile } = $props();
 </script>
 
-<div class="prose mx-auto p-4">
-  {@html file.content}
+<div class="bg-neutral-200 min-h-full h-full">
+  <div class="prose mx-auto py-4 px-8 bg-white min-h-full h-full overflow-auto">
+    {@html file.content}
+  </div>
 </div>
