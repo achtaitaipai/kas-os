@@ -28,7 +28,7 @@ return function (Container $container) {
   $container->set(Twig::class, function (Container $container) {
     $flash = $container->get(Messages::class);
     $twig =  Twig::create(__DIR__ . '/../src/templates', ['cache' => false]);
-    $twig->getEnvironment()->enableDebug();
+    /*$twig->getEnvironment()->enableDebug();*/
     $twig->getEnvironment()->addFunction(new TwigFunction('vite', function (string $entry) {
       return Vite::links($entry);
     }));

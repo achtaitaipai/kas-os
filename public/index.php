@@ -7,6 +7,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 session_start();
 
+
 $container = new Container();
 
 $dependencies = include __DIR__ . "/../app/dependencies.php";

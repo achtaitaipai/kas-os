@@ -1,0 +1,35 @@
+{% extends "layouts/baseAdmin.html.twig" %}
+
+{% block content %}
+
+{% import "partials/forms.html.twig" as forms %}
+  <article>
+    <h1>Login</h1>
+    <form method="post" action="{{url_for("settings")}}">
+      {{forms.input("Site Title:","title",  data["title"] ?? settings.title(), "text", errors)}}
+      <label for="lang">Language: </label>
+      {% set lang = data is defined ? data["lang"] : settings.lang() %}
+      <select name="lang" id="lang">
+        <option value="en" {{lang == "en" ? "selected"}}>English</option>
+        <option value="fr" {{lang == "fr" ? "selected"}}>French</option>
+      </select>
+      {{forms.input("Background Color:","backgroundColor",  data["backgroundColor"] ?? settings.backgroundColor(), "color", errors)}}
+      {{forms.input("Image Background url","backgroundImage",  data["backgroundImage"] ?? settings.backgroundImage(), "text", errors, required)}}
+      {% set repeat = data is defined ? data["repeat"] : settings.repeat() %}
+      <fieldset>
+        <label>
+          <input name="repeat" type="checkbox" role="switch" {%if repeat is same as(true) or repeat is same as("on") %} checked {%endif%}/>
+          Repeat background
+        </label>
+      </fieldset>
+      {% set cover = data is defined ? data["cover"] : settings.cover() %}
+      <fieldset>
+        <label>
+          <input name="cover" type="checkbox" role="switch" {%if cover is same as(true)  or cover is same as("on") %} checked {%endif%}/>
+            Cover the screen with the background image
+        </label>
+      </fieldset>
+      <button>Save</button>
+    </form>
+  </article>
+{% endblock %}

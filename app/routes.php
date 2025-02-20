@@ -3,6 +3,7 @@
 use App\Controllers\AuthController;
 use App\Controllers\FileController;
 use App\Controllers\HomeController;
+use App\Controllers\SettingsController;
 use App\Controllers\StaticFilesController;
 use App\Middlewares\AuthMiddleware;
 use Slim\App;
@@ -29,6 +30,8 @@ return function (App $app) {
     $group->post("/upload", [FileController::class, "doUpload"])->setName("filesUpload");
     $group->get("/create", [FileController::class, "create"])->setName("filesCreate");
     $group->post("/create", [FileController::class, "store"])->setName("filesCreate");
+    $group->get("/settings", [SettingsController::class, "edit"])->setName("settings");
+    $group->post("/settings", [SettingsController::class, "update"])->setName("settings");
   })->add(new AuthMiddleware());
 
   $app->get("/static/{file}", [StaticFilesController::class, "show"])->setName("static");

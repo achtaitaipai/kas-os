@@ -16,7 +16,7 @@
   <header class="container">
     <nav>
       <ul>
-        <li><strong>Kas-Os</strong></li>
+        <li><strong><a href="{{url_for("files")}}">Kas-os</a></strong></li>
       </ul>
       {% if isLogged() %}
         <ul>
@@ -31,6 +31,7 @@
               </ul>
             </details>
           </li>
+          <li><a href={{url_for("settings")}}>Settings</a></li>
           <li>
             <form method="post" action="{{url_for("logout")}}" >
               <button class="contrast">Logout</button>

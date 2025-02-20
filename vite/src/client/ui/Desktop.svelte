@@ -13,7 +13,7 @@
   });
 </script>
 
-<div class="h-dvh w-screen grid grid-rows-[1fr_auto] bg-background">
+<div class="h-dvh w-screen grid grid-rows-[1fr_auto] | desktop">
   <main class="h-full min-h-0 relative">
     <div class="flex flex-col flex-wrap content-start gap-4 p-2 h-full">
       {#if $query.isSuccess}
@@ -34,3 +34,13 @@
   </main>
   <Bar />
 </div>
+
+<style>
+  .desktop {
+    background-color: var(--_bg-color);
+    background-image: var(--_bg-img);
+    background-size: var(--_bg-size);
+    background-repeat: var(--_bg-repeat);
+    background-position: center center;
+  }
+</style>

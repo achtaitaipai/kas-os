@@ -19,7 +19,10 @@
     }
   },
   "scripts": {
-    "start": "php -S localhost:8000 public/index.php"
+    "start": [
+      "Composer\\Config::disableProcessTimeout",
+      "@php -S localhost:8000 -t public"
+    ]
   },
   "require-dev": {
     "symfony/var-dumper": "^7.2"

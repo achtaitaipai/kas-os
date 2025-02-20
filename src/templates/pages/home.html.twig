@@ -1,9 +1,17 @@
 <!doctype html>
-<html lang="fr" data-theme="light">
+<html lang="{{settings.lang()}}">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title></title>
+    <title>{{settings.title()}}</title>
+    <style>
+      :root{
+          --_bg-color:{{settings.backgroundColor()}};
+          --_bg-img:url({{settings.backgroundImage()}});
+          --_bg-size:{{settings.cover() ? "cover" : "contain"}} ;
+          --_bg-repeat:{{settings.repeat() ? "repeat" : "no-repeat"}} ;
+        }
+    </style>
     {{vite('client.ts') | raw}}
   </head>
   <body class="overflow-hidden w-screen h-dvh">
