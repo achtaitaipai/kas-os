@@ -37,10 +37,10 @@
 	}
 </script>
 
-<svelte:window onpointermove={handleMouseMove} onpointerup={handleUnclick} />
+<svelte:window onmousemove={handleMouseMove} onmouseup={handleUnclick} />
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div class="" onpointerdown={handleClick}>
+<div class="" onmousedown={handleClick}>
 	{@render children()}
 </div>
 
