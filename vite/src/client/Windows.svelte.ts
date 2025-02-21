@@ -16,12 +16,24 @@ export class WindowData {
   public timestamp: number;
   public id: number;
 
-  constructor(path: string, top: number, left: number) {
+  constructor(path: string, index: number) {
     this.path = path;
     this.id = makeId();
     this.timestamp = Date.now();
-    this.top = top;
-    this.left = left;
+    this.#setDimensions(index);
+  }
+
+  #setDimensions(index: number) {
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    const shortSize = Math.min(windowWidth, windowHeight);
+    const baseOffset = shortSize < 500 ? 10 : 50;
+    const loop = shortSize < 500 ? 3 : 10;
+    const maxOffset = 20 * (loop - 1) + baseOffset;
+    this.width = Math.min(500, windowWidth - maxOffset);
+    this.height = Math.min(500, windowHeight - maxOffset);
+    this.left = 20 * (index % loop) + baseOffset;
+    this.top = this.left;
   }
 }
 
@@ -42,11 +54,7 @@ export function openWindow(path: string) {
     target.fold = false;
     return;
   }
-  const item = new WindowData(
-    path,
-    20 * (windows.length % 10) + 50,
-    20 * (windows.length % 10) + 50,
-  );
+  const item = new WindowData(path, windows.length);
   windows = [...windows, item];
   activeWindow(item.id);
 }
