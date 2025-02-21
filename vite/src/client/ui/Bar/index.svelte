@@ -21,9 +21,7 @@
   }
 </script>
 
-<aside
-  class="border-t border-neutral-950/10 grid grid-cols-[1fr_auto] w-screen bg-neutral-100/30"
->
+<aside class="border-t grid grid-cols-[1fr_auto] w-screen">
   <div class="flex p-1 gap-1 overflow-auto items-center">
     {#each getSortedWindows() as windowData}
       <Tab {windowData} />
@@ -34,3 +32,10 @@
   </div>
   <div class="py-2 px-4">{hours}:{minutes}</div>
 </aside>
+
+<style>
+  aside {
+    background-color: color-mix(in srgb, var(--_bg-color), white 40%);
+    border-color: color-mix(in srgb, var(--_bg-color), black 10%);
+  }
+</style>
