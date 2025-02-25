@@ -46,6 +46,23 @@ On the `settings` page, you can customize:
 
 ---
 
+## Controlling the Display Order
+
+By default, Kas-Os sorts folders and files from most recent to oldest based on their last modification date.
+To define your own display order, rename your items so that their names begin with a number followed by an underscore (`_`). For example:
+
+- `doc.md`
+- `chat.jpeg`
+
+become:
+
+- `1_chat.jpeg`
+- `2_doc.md`
+
+The numeric prefix (e.g., `1_`, `2_`, etc.) is hidden from the end user.
+
+---
+
 ## Password Management
 
 If you forget your password or wish to reset it, manually delete the `accounts.txt` file on your server. The next time you visit `http://yoursite/admin`, you will be prompted to create a new account.

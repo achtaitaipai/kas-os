@@ -30,7 +30,21 @@ class File
 
   public function name()
   {
-    return pathinfo($this->path, PATHINFO_FILENAME);
+    return  pathinfo($this->path, PATHINFO_FILENAME);
+  }
+
+  public function displayName()
+  {
+    $filename =  pathinfo($this->path, PATHINFO_FILENAME);
+    return preg_replace('/^\d+_/', '', $filename);
+  }
+
+  public function order()
+  {
+
+    preg_match('/^(\d+)_/', $this->name(), $matches);
+    if (empty($matches)) return null;
+    return $matches[1];
   }
 
   public function baseName()
@@ -79,11 +93,13 @@ class File
       $files[] = $file;
     }
     usort($files, function (File $a, File $b) {
-      if ($a->isDir() === $b->isDir()) {
+      if ($a->isDir() && !$b->isDir()) return -1;
+      else if ($b->isDir() && !$a->isDir()) return 1;
+      if ($a->order() === $b->order())
         return $b->time() - $a->time();
-      }
-      if ($a->isDir()) return -1;
-      return 1;
+      if (is_null($a->order())) return 1;
+      if (is_null($b->order())) return -1;
+      return $a->order() - $b->order();
     });
     return $files;
   }
@@ -167,7 +183,7 @@ class File
       "type" => $this->type(),
       "parent" => $this->directory(),
       "path" => $this->path(),
-      "name" => $this->name(),
+      "name" => $this->displayName(),
     ];
 
     switch ($data["type"]) {
