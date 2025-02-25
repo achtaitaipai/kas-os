@@ -7,7 +7,6 @@ use Psr\Http\Message\ServerRequestInterface;
 use Slim\Exception\HttpNotFoundException;
 use Slim\Psr7\Factory\StreamFactory;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\String\Slugger\AsciiSlugger;
 use Twig\Extra\String\StringExtension;
 
 class StaticFilesController extends Controller
