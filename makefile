@@ -17,7 +17,7 @@ build:
 
 # 4. Crée l'archive ZIP
 zip:
-	zip -r build.zip . \
+	zip -r kas-os.zip . \
 		-x "composer.json" \
 		-x "composer.lock" \
 		-x "README.md" \
@@ -31,4 +31,4 @@ zip:
 		-x "*.gitignore" \
 		-x "content/*" 
 	
-	zip build.zip content/ -i content/
+	zip kas-os.zip content/ -i content/
