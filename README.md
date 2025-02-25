@@ -7,9 +7,9 @@ Kas-Os is a lightweight CMS that lets you easily create and manage a website thr
 ## Installation
 
 1. **Download**
-   Download the `build.zip` archive from the [latest release](https://github.com/achtaitaipai/kas-os/releases/latest).
+   Download the `kas-os.zip` archive from the [latest release](https://github.com/achtaitaipai/kas-os/releases/latest).
 2. **Unzip and Copy**
-   - Unzip the `build.zip` archive.
+   - Unzip the `kas-os.zip` archive.
    - Copy **all** files to your server, including hidden files such as `/.htaccess` and `public/.htaccess`.
 3. **Initial Setup**
    - In your browser, go to: `http://yoursite/admin`.
