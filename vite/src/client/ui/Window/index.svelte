@@ -48,7 +48,7 @@
   style="left: {windowData.left}px; top: {windowData.top}px; width: {windowData.width}px; height: {windowData.height}px;"
   class:select-none={isResizing || isMoving}
   class:fullscreen={windowData.fullscreen}
-  onmousedown={() => activeWindow(windowData.id)}
+  onpointerdown={() => activeWindow(windowData.id)}
 >
   <Resizer
     bind:width={windowData.width}

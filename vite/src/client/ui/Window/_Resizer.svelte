@@ -92,12 +92,12 @@
 	}
 </script>
 
-<svelte:window onmousemove={handleMouseMove} onmouseup={handleUnclick} />
+<svelte:window onpointermove={handleMouseMove} onpointerup={handleUnclick} />
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <div
-	onmousedown={handleClick}
-	onmousemove={setCursor}
+	onpointerdown={handleClick}
+	onpointermove={setCursor}
 	bind:this={element}
 	style="cursor:{(edge&&enabled) ? CURSORS[edge] : 'auto'}"
   class="absolute inset-0 p-[6px]" 
