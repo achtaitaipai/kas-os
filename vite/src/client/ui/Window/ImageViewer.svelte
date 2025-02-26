@@ -34,7 +34,7 @@
           onclick={() => nextImg(neighbors, -1)}
           aria-label={t("previous")}
           title={t("previous")}
-          class="p-1 hover:bg-neutral-200 cursor-pointer transition-colors rounded-xs"
+          class="p-1 hover:bg-neutral-200 dark:hover:bg-neutral-700 cursor-pointer transition-colors rounded-xs"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +56,7 @@
           onclick={() => nextImg(neighbors, 1)}
           aria-label={t("next")}
           title={t("next")}
-          class="p-1 hover:bg-neutral-200 cursor-pointer transition-colors rounded-xs"
+          class="p-1 hover:bg-neutral-200 dark:hover:bg-neutral-700 cursor-pointer transition-colors rounded-xs"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

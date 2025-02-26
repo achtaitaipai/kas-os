@@ -35,6 +35,13 @@ class SettingsController extends Controller
         ->setTemplate('The lang must be a 2-letter code.'),
       true
     )->attribute(
+      'darkmode',
+      v::optional(
+        v::equals('on')
+          ->setTemplate('The dark mode checkbox must be "on" if present.')
+      ),
+      false
+    )->attribute(
       'backgroundColor',
       v::hexRgbColor(),
 
@@ -68,6 +75,7 @@ class SettingsController extends Controller
         "title" => $data["title"],
         "metadesc" => $data["metadesc"],
         "lang" => $data["lang"],
+        "darkmode" => isset($data["darkmode"]) && $data["darkmode"] === "on" ? true : false,
         "backgroundColor" => $data["backgroundColor"],
         "backgroundImage" => isset($data["backgroundImage"]) ? $data["backgroundImage"] : null,
         "repeat" => isset($data["repeat"]) && $data["repeat"] === "on" ? true : false,

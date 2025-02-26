@@ -59,7 +59,7 @@
     enabled={!isMoving && !windowData.fullscreen && windowData.active}
   >
     <div
-      class="flex flex-col h-full rounded-xs bg-gray-50 overflow-hidden shadow-sm"
+      class="flex flex-col h-full rounded-xs bg-gray-50 dark:bg-gray-900 overflow-hidden shadow-sm"
     >
       <header>
         <Handle
@@ -69,7 +69,7 @@
           bind:isMoving
         >
           <div
-            class="grid grid-cols-[1fr_auto] bg-blue-700 items-center"
+            class="grid grid-cols-[1fr_auto] bg-blue-700 dark:bg-blue-800 items-center"
             class:bg-neutral-500={!windowData.active}
           >
             <div class="font-bold text-white py-1 px-2 grow shrink max-w-full">
@@ -107,7 +107,7 @@
               <button
                 title={t("minimize")}
                 aria-label={t("minimize")}
-                class="bg-neutral-200 p-1 aspect-square cursor-pointer rounded-xs transition-colors hover:bg-neutral-300"
+                class="bg-neutral-200 dark:bg-neutral-700 p-1 aspect-square cursor-pointer rounded-xs transition-colors hover:bg-neutral-300 dark:hover:bg-neutral-900"
                 onclick={fold}
               >
                 <svg
@@ -128,7 +128,7 @@
               <button
                 title={t("fullscreen")}
                 aria-label={t("fullscreen")}
-                class="bg-neutral-200 p-1 aspect-square cursor-pointer rounded-xs transition-colors hover:bg-neutral-300"
+                class="bg-neutral-200 dark:bg-neutral-700 p-1 aspect-square cursor-pointer rounded-xs transition-colors hover:bg-neutral-300 dark:hover:bg-neutral-900"
                 onclick={toggleFullscreen}
               >
                 <svg
@@ -172,8 +172,12 @@
         </Handle>
         {#if $query.isSuccess}
           {#if $query.data.type === "directory"}
-            <div class="bg-gray-200 p-1.5 flex gap-1.5 items-center">
-              <div class="bg-white px-2 h-9 grow flex items-center">
+            <div
+              class="bg-gray-200 dark:bg-gray-700 p-1.5 flex gap-1.5 items-center"
+            >
+              <div
+                class="bg-white dark:bg-black dark:text-white px-2 h-9 grow flex items-center"
+              >
                 <p class=" break-all line-clamp-1">
                   {windowData.displayPath}
                 </p>
@@ -181,7 +185,7 @@
               <button
                 aria-label={t("back")}
                 title={t("back")}
-                class="p-2 not-disabled:cursor-pointer rounded-xs transition-colors bg-neutral-200/70 not-disabled:hover:bg-neutral-300/70 disabled:text-neutral-400"
+                class="p-2 not-disabled:cursor-pointer rounded-xs transition-colors bg-neutral-200/70 dark:bg-gray-800/70 not-disabled:hover:bg-neutral-300/70 disabled:text-neutral-400"
                 disabled={$query.data.parent === null ||
                   $query.data.parent === "/"}
                 onclick={() => $query.data.parent && back($query.data.parent)}

@@ -36,6 +36,10 @@ class UserSettings
   {
     return $this->data["backgroundImage"];
   }
+  public function darkmode(): bool
+  {
+    return $this->data["darkmode"];
+  }
   public function repeat(): bool
   {
     return $this->data["repeat"];

@@ -21,6 +21,13 @@
       {%if errors["metadesc"] is defined %}
         <small>{{errors["metadesc"]}}</small>
       {%endif%}
+      {% set darkmode = data is defined ? data["darkmode"] : settings.darkmode() %}
+      <fieldset>
+        <label>
+          <input name="darkmode" type="checkbox" role="switch" {%if darkmode is same as(true) or darkmode is same as("on") %} checked {%endif%}/>
+          Dark mode
+        </label>
+      </fieldset>
       {{forms.input("Background Color:","backgroundColor",  data["backgroundColor"] ?? settings.backgroundColor(), "color", errors)}}
       {{forms.input("Image Background url","backgroundImage",  data["backgroundImage"] ?? settings.backgroundImage(), "text", errors, required)}}
       {% set repeat = data is defined ? data["repeat"] : settings.repeat() %}

@@ -15,7 +15,7 @@
     </style>
     {{vite('client.ts') | raw}}
   </head>
-  <body class="overflow-hidden w-screen h-dvh">
+  <body class="overflow-hidden w-screen h-dvh {{settings.darkmode() ? "dark"}}">
     <div id="app"></div>
   </body>
 </html>

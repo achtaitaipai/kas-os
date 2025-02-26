@@ -96,7 +96,7 @@
         aria-label={playing ? "pause" : "play"}
         title={t(playing ? "pause" : "play")}
         onclick={playPause}
-        class="p-1 rounded-xs cursor-pointer hover:bg-neutral-200"
+        class="p-1 rounded-xs cursor-pointer hover:bg-neutral-200 dark:hover:bg-neutral-700"
       >
         {#if !playing}
           <svg
@@ -134,7 +134,7 @@
         title={t("stop")}
         aria-label={t("stop")}
         onclick={stop}
-        class="p-1 cursor-pointer rounded-xs hover:bg-neutral-200"
+        class="p-1 cursor-pointer rounded-xs hover:bg-neutral-200 dark:hover:bg-neutral-700"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
