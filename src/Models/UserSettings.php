@@ -20,7 +20,10 @@ class UserSettings
   {
     return $this->data["title"];
   }
-
+  public function metadesc(): string
+  {
+    return $this->data["metadesc"];
+  }
   public function lang(): string
   {
     return $this->data["lang"];

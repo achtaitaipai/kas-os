@@ -25,6 +25,11 @@ class SettingsController extends Controller
         ->length(1, 100)
         ->setTemplate('The title must be a non-empty string (1-100 characters).')
     )->attribute(
+      'metadesc',
+      v::stringType()
+        ->length(1, 160)
+        ->setTemplate('The description must be a non-empty string (1-160 characters)')
+    )->attribute(
       'lang',
       v::regex('/^[a-z]{2}$/i')
         ->setTemplate('The lang must be a 2-letter code.'),
@@ -61,6 +66,7 @@ class SettingsController extends Controller
       $validator->assert((object) $data);
       $userSettings = [
         "title" => $data["title"],
+        "metadesc" => $data["metadesc"],
         "lang" => $data["lang"],
         "backgroundColor" => $data["backgroundColor"],
         "backgroundImage" => isset($data["backgroundImage"]) ? $data["backgroundImage"] : null,

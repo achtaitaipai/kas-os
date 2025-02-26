@@ -13,6 +13,14 @@
         <option value="en" {{lang == "en" ? "selected"}}>English</option>
         <option value="fr" {{lang == "fr" ? "selected"}}>French</option>
       </select>
+      {% set metadesc = data is defined ? data["metadesc"] : settings.metadesc() %}
+      <label for="metadesc">Meta description:</label>
+      <textarea id="metadesc" name="metadesc"
+        aria-invalid="{{errors["metadesc"] is defined ? "true" : "false"}}"
+      >{{metadesc}}</textarea>
+      {%if errors["metadesc"] is defined %}
+        <small>{{errors["metadesc"]}}</small>
+      {%endif%}
       {{forms.input("Background Color:","backgroundColor",  data["backgroundColor"] ?? settings.backgroundColor(), "color", errors)}}
       {{forms.input("Image Background url","backgroundImage",  data["backgroundImage"] ?? settings.backgroundImage(), "text", errors, required)}}
       {% set repeat = data is defined ? data["repeat"] : settings.repeat() %}
