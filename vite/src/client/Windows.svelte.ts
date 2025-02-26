@@ -35,6 +35,10 @@ export class WindowData {
     this.left = 20 * (index % loop) + baseOffset;
     this.top = this.left;
   }
+
+  get displayPath() {
+    return this.path.replace(/\/\d+_/g, "/");
+  }
 }
 
 let windows: WindowData[] = $state([]);

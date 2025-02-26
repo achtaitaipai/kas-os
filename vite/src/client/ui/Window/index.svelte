@@ -175,7 +175,7 @@
             <div class="bg-gray-200 p-1.5 flex gap-1.5 items-center">
               <div class="bg-white px-2 h-9 grow flex items-center">
                 <p class=" break-all line-clamp-1">
-                  {windowData.path}
+                  {windowData.displayPath}
                 </p>
               </div>
               <button
