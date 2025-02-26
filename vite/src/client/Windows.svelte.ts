@@ -37,7 +37,7 @@ export class WindowData {
   }
 
   get displayPath() {
-    return this.path.replace(/\/\d+_/g, "/");
+    return this.path.replace(/\/-?\d+_/g, "/");
   }
 }
 

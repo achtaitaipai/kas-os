@@ -36,13 +36,13 @@ class File
   public function displayName()
   {
     $filename =  pathinfo($this->path, PATHINFO_FILENAME);
-    return preg_replace('/^\d+_/', '', $filename);
+    return preg_replace('/^-?\d+_/', '', $filename);
   }
 
   public function order()
   {
 
-    preg_match('/^(\d+)_/', $this->name(), $matches);
+    preg_match('/^(-?\d+)_/', $this->name(), $matches);
     if (empty($matches)) return null;
     return $matches[1];
   }
