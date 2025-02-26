@@ -59,7 +59,7 @@ become:
 - `1_chat.jpeg`
 - `2_doc.md`
 
-The numeric prefix (e.g., `1_`, `2_`, etc.) is hidden from the end user.
+You can use either positive or negative numbers. In ascending order, items prefixed with negative numbers (e.g., `-1_`) will appear before those with positive numbers. The numeric prefix (e.g., `1_`, `-1_`, etc.) is hidden from the end user.
 
 ---
 
