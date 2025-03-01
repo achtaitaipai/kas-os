@@ -25,8 +25,8 @@ zip:
 		-x "accounts.txt" \
 		-x ".git/*" \
 		-x "vite/*" \
-		-x "build/*" \
-		-x "build.zip" \
+		-x "kas-os/*" \
+		-x "kas-os.zip" \
 		-x "*.DS_Store" \
 		-x "*.gitignore" \
 		-x "content/*" 
