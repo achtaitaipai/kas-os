@@ -11,10 +11,7 @@
       <input
         type="file"
         multiple
-        name="files[]"
-        label="Click to upload."
-        help="Upload files here and they won't be sent immediatly."
-        is="drop-files" />
+        name="files[]"/>
         {%if errors["files[]"] is defined %}
           <small style="display:block; color:var(--pico-del-color);">{{errors["files[]"]}}</small>
         {%endif%}

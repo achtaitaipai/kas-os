@@ -17,7 +17,6 @@
     "vite-plugin-live-reload": "^3.0.4"
   },
   "dependencies": {
-    "@grafikart/drop-files-element": "^1.0.9",
     "@picocss/pico": "^2.0.6",
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "@tailwindcss/vite": "^4.0.1",
