@@ -25,7 +25,7 @@ Kas-Os is a lightweight CMS that lets you easily create and manage a website thr
 - **File Uploads**
   You can upload images or audio files to include in your pages or make them available for download.
 - **Hiding Items**
-  Any file or folder whose name begins with an underscore (`_`) is hidden from visitors. This allows you to work on drafts or store resources (images, audio, etc.) without making them publicly visible.
+  Any file or folder whose name begins with an underscore (\_) is hidden from non-logged-in users. This allows you to work on drafts or store resources (images, audio, etc.) without making them publicly visible.
 
 ---
 
