@@ -177,7 +177,7 @@ class File
     return 'unknown';
   }
 
-  public function asArray(?bool $withDeep = true): array
+  public function asArray(?bool $withDeep = true, ?bool $withHidden = false): array
   {
     $data =  [
       "type" => $this->type(),
@@ -193,7 +193,7 @@ class File
 
       case 'directory':
         if ($withDeep)
-          $data["childrens"] = array_map(fn($f) => $f->asArray(false), $this->childrens(withHidden: false));
+          $data["childrens"] = array_map(fn($f) => $f->asArray(false), $this->childrens(withHidden: $withHidden));
         break;
 
       case 'markdown':

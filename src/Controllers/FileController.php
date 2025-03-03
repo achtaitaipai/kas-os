@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Application\Auth;
 use App\Application\Settings;
 use App\Models\File;
 use Error;
@@ -214,15 +215,16 @@ class FileController extends Controller
 
   public function api(ServerRequestInterface $request, ResponseInterface $response)
   {
+    $isLogged = Auth::isLogged();
     $data = $request->getQueryParams();
     $path = $data["path"] ?? "/";
     if (!File::isValidPath($path)) {
       throw new HttpNotFoundException($request);
     }
     $file = new File($path);
-    if ($file->hidden())
+    if (!$isLogged && $file->hidden())
       throw new HttpNotFoundException($request);
-    $payload = $file->asArray();
+    $payload = $file->asArray(withHidden: $isLogged);
     $json = json_encode($payload, JSON_PRETTY_PRINT);
     $response->getBody()->write($json);
     return $response
