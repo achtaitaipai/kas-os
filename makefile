@@ -20,6 +20,7 @@ zip:
 	zip -r kas-os.zip . \
 		-x "composer.json" \
 		-x "composer.lock" \
+		-x "package-lock.json" \
 		-x "README.md" \
 		-x "makefile" \
 		-x "accounts.txt" \
